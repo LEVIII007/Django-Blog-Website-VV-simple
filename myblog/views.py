@@ -12,6 +12,7 @@ def index(request):
 
 def details(request, slug):
     post = Post.objects.get(slug=slug)
+    Comment = None
 
     if request.method == "POST":
         form = CommentForm(request.POST)
@@ -24,7 +25,6 @@ def details(request, slug):
         form = CommentForm()
 
     return render(request, "myblog/details.html", {
-        "slug": slug,
-        "comment" : Comment,
+        "form": form,
         "post": post
     })
